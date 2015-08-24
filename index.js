@@ -161,5 +161,8 @@ function propertyValuePair(property, value) {
 	return property + ':' + value
 }
 
+// 暴露 css 规则渲染方法
+addStyle.renderRules = renderRules
+
 return addStyle
 })

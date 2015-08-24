@@ -10,6 +10,8 @@ npm install addstyle
 
 ## 用法
 
+### AddStyle
+
 ```javascript
 var cssRules
 // 最简单的方式，使用 css 文本
@@ -61,6 +63,10 @@ CSS 规则可以通过多种方式传入：
 ```
 
 注：如示例中所示，CSS 规则声明支持文本或对象形式。
+
+### AddStyle.renderRules
+
+将传入的 css 规则声明渲染为 css 文本。
 
 ## 兼容性
 

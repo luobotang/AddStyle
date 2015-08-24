@@ -26,6 +26,7 @@
 <div id="test5">Rule param {Array} - declaration {string} - yellow</div>
 <div id="test6">Rule param {Array} - declaration {Object} - gold</div>
 <div id="test7">Rule param {Array} - declaration {Array} - blue</div>
+<div id="test8" class="test-render-rules">test renderRules() - green, italic, underline</div>
 
 <script src="../index.js" charset="UTF-8"></script>
 <script>
@@ -74,6 +75,14 @@ AddStyle([
 		'color: blue'
 	]]
 ])
+var renderedCssText = AddStyle.renderRules({
+	'#test8': 'color: green',
+	'.test-render-rules': {
+		'font-style': 'italic',
+		'text-decoration': 'underline'
+	}
+})
+AddStyle(renderedCssText)
 </script>
 </body>
 </html>
