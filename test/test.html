@@ -6,14 +6,26 @@
 	<style>
 		p {
 			padding: 1em;
-			font:normal 24px/1 arial, sans-serif;
+			font: normal 24px/1 arial, sans-serif;
 			color: #333;
+		}
+		div {
+			color: red;
+			font: bold 16px/2 arial, sans-serif;
 		}
 	</style>
 </head>
 <body>
 
 <p id="test">Black</p>
+
+<div id="test1">Rule param {string} - brown</div>
+<div id="test2">Rule param {Object} - declaration {string} - orange</div>
+<div id="test3">Rule param {Object} - declaration {Object} - green</div>
+<div id="test4">Rule param {Object} - declaration {Array} - cyan</div>
+<div id="test5">Rule param {Array} - declaration {string} - yellow</div>
+<div id="test6">Rule param {Array} - declaration {Object} - gold</div>
+<div id="test7">Rule param {Array} - declaration {Array} - blue</div>
 
 <script src="../index.js" charset="UTF-8"></script>
 <script>
@@ -41,6 +53,27 @@ setTimeout(function () {
 		ele.innerHTML = 'Red, bold'
 	}, 2000);
 }, 3000);
+
+// 测试样式规则参数格式的支持
+AddStyle('#test1 { color: brown }')
+AddStyle({
+	'#test2': 'color: orange',
+	'#test3': {
+		color: 'green'
+	},
+	'#test4': [
+		'color: cyan'
+	]
+})
+AddStyle([
+	['#test5', 'color: yellow'],
+	['#test6', {
+		color: 'gold'
+	}],
+	['#test7', [
+		'color: blue'
+	]]
+])
 </script>
 </body>
 </html>

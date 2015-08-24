@@ -66,10 +66,15 @@ function renderRules(rules) {
 	 */
 	if (isArray(rules)) {
 		var rule
-		var i, len
-		for (i = 0, len === rules.length; i < len; i++) {
+		var i = 0
+		var len = rules.length
+		for (; i < len; i++) {
 			rule = rules[i]
-			cssText += rule2css(rule[0], rule[1])
+			if (isArray(rule)) {
+				cssText += rule2css(rule[0], rule[1])
+			} else if (typeof rule === 'string') {
+				cssText += rule;
+			}
 		}
 	}
 	/*
@@ -92,27 +97,68 @@ function renderRules(rules) {
 // CSSRule
 // <CSSRule> =>
 //   <selector> { <declaration> }
-// <declaration> =>
-//   property: value;
-//   property: value;
-//   ...
+//
+// <declaration> [1] {string} =>
+//   'property: value; ...'
+// <declaration> [2] {Object} =>
+//   {
+//     property: <value>;
+//     ...
+//   }
+// <declaration> [3] {string[]} =>
+//   [
+//     'property: value',
+//     ...
+//   ]
+// <declaration> [4] {Array[]} =>
+//   [
+//     ['property', <value>],
+//     ...
+//   ]
+//
+// <value> [1] {string} =>
+//   'value'
+// <value> [2] {string[]} =>
+//   ['value', ...]
 
 function rule2css(selector, declaration) {
-	if (typeof declaration === 'object') {
-		var ret = []
+	if (typeof declaration !== 'string') {
+		var tmp = []
 		var property
 		var value
-		for (property in declaration) {
-			value = declaration[property]
-			ret.push(
-				property + ':' + (
-					isArray(value) ? value.join(' ') : value
-				)
-			)
+		
+		if (isArray(declaration)) {
+			var propValuePairSet = declaration
+			var propValuePair
+			var i = 0
+			var len = propValuePairSet.length
+			for (; i < len; i++) {
+				propValuePair = propValuePairSet[i]
+				if (isArray(propValuePair)) {
+					property = propValuePair[0]
+					value = propValuePair[1]
+					tmp.push(propertyValuePair(property, value))
+				} else if (typeof propValuePair === 'string') {
+					tmp.push(propValuePair)
+				}
+			}
 		}
-		declaration = ret.join(';')
+		else if (typeof declaration === 'object') {
+			for (property in declaration) {
+				value = declaration[property]
+				tmp.push(propertyValuePair(property, value))
+			}
+		}
+
+		declaration = tmp.join(';')
 	}
+
 	return selector + '{' + declaration + '}'
+}
+
+function propertyValuePair(property, value) {
+	value = isArray(value) ? value.join(' ') : value
+	return property + ':' + value
 }
 
 return addStyle
