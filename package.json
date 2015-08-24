@@ -1,6 +1,6 @@
 {
   "name": "addstyle",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "add css style to html",
   "main": "index.js",
   "scripts": {
