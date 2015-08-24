@@ -11,18 +11,20 @@ npm install addstyle
 ## 用法
 
 ```javascript
+var cssRules
 // 最简单的方式，使用 css 文本
-var styleElement1 = AddStyle('p { color: red; }')
-// 传入 css 规则对象
-var styleElement2 = AddStyle({
+cssRules = 'p { color: red; }'
+// 或者，传入 css 规则对象
+cssRules = {
   p: {color: 'blue'}
-})
-// 传入 css 规则数组，规则采用不同结构声明
-var styleElement2 = AddStyle([
+}
+// 或者，传入 css 规则数组，规则采用不同结构声明
+cssRules [
     ['p', { color: 'red' }],
     ['.msg', 'line-height: 2'],
     '.alert { font-weight: bold; }'
-])
+]
+var styleElement = AddStyle(cssRules)
 ```
 
 CSS 规则可以通过多种方式传入：
