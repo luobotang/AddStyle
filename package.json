@@ -1,7 +1,7 @@
 {
-  "name": "luobotang-addstyle",
-  "version": "0.1.2",
-  "description": "add style",
+  "name": "addstyle",
+  "version": "0.2.0",
+  "description": "add css style to html",
   "main": "index.js",
   "scripts": {
     "test": "start test/test.html"
