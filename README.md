@@ -1,18 +1,28 @@
 # AddStyle
 
-JavaScript，将 CSS 内容以添加 style 节点方式应用到页面。
+将 CSS 内容以添加 style 节点方式应用到页面。
 
 ## 安装
 
 ```hash
-npm install luobotang-addstyle
+npm install addstyle
 ```
 
 ## 用法
 
 ```javascript
-AddStyle('p { color: red; }')
-AddStyle({p: {color: 'blue'}})
+// 最简单的方式，使用 css 文本
+var styleElement1 = AddStyle('p { color: red; }')
+// 传入 css 规则对象
+var styleElement2 = AddStyle({
+  p: {color: 'blue'}
+})
+// 传入 css 规则数组，规则采用不同结构声明
+var styleElement2 = AddStyle([
+    ['p', { color: 'red' }],
+    ['.msg', 'line-height: 2'],
+    '.alert { font-weight: bold; }'
+])
 ```
 
 CSS 规则可以通过多种方式传入：
@@ -20,7 +30,7 @@ CSS 规则可以通过多种方式传入：
 1、规则文本
 
 例如：
-```
+```javascript
 'p { color: red; } strong { font-weight: bold; }'
 ```
 
