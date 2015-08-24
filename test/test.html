@@ -3,30 +3,42 @@
 <head>
 	<meta charset="UTF-8">
 	<title>AddStyle - 测试</title>
+	<style>
+		p {
+			padding: 1em;
+			font:normal 24px/1 arial, sans-serif;
+			color: #333;
+		}
+	</style>
 </head>
 <body>
 
-<p style="font-weight:bold">
-0s - Black<br>
-1s - Red<br>
-3s - Blue<br>
-5s - Red<br>
-7s - Black
-</p>
+<p id="test">Black</p>
 
 <script src="../index.js" charset="UTF-8"></script>
 <script>
+var ele = document.getElementById('test')
+
 setTimeout(function () {
-	var s = AddStyle('p { color: red; }')
+	var s = AddStyle('p { color: red; font-weight: bold; }')
+	ele.innerHTML = 'Red, bold'
 	setTimeout(function () {
 		s.parentNode.removeChild(s);
+		ele.innerHTML = 'Black'
 	}, 6000);
 }, 1000);
 
 setTimeout(function () {
-	var s = AddStyle({p: {color: 'blue'}})
+	var s = AddStyle({
+		p: {
+			color: 'blue',
+			'font-style': 'italic'
+		}
+	})
+	ele.innerHTML = 'Blue, bold, italic'
 	setTimeout(function () {
 		s.parentNode.removeChild(s);
+		ele.innerHTML = 'Red, bold'
 	}, 2000);
 }, 3000);
 </script>
