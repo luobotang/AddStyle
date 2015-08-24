@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>AddStyle - 测试</title>
+</head>
+<body>
+
+<p style="font-weight:bold">
+0s - Black<br>
+1s - Red<br>
+3s - Blue<br>
+5s - Red<br>
+7s - Black
+</p>
+
+<script src="../index.js" charset="UTF-8"></script>
+<script>
+setTimeout(function () {
+	var s = AddStyle('p { color: red; }')
+	setTimeout(function () {
+		s.parentNode.removeChild(s);
+	}, 6000);
+}, 1000);
+
+setTimeout(function () {
+	var s = AddStyle({p: {color: 'blue'}})
+	setTimeout(function () {
+		s.parentNode.removeChild(s);
+	}, 2000);
+}, 3000);
+</script>
+</body>
+</html>
