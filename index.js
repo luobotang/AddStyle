@@ -1,6 +1,6 @@
 (function (factory) {
 
-	if (typeof module === 'objects' && module.exports) {
+	if (typeof module === 'object' && module.exports) {
 		module.exports = factory()
 	} else {
 		window.AddStyle = factory()
@@ -15,15 +15,15 @@ var isArray = Array.isArray ? function (o) {
 }
 
 /*
- * ÏòÒ³ÃæÌí¼Ó css ÑùÊ½
+ * å‘é¡µé¢æ·»åŠ  css æ ·å¼
  *
  * @example
- *   // ÎÄ±¾
+ *   // æ–‡æœ¬
  *   addStyle('p { color: red; }')
- *   // ÑùÊ½Êı¾İ¶ÔÏó
+ *   // æ ·å¼æ•°æ®å¯¹è±¡
  *   addStyle({p: { color: 'red' }})
  *
- * @param {string|Object|Array} css - ÒªÌí¼ÓµÄ css ÎÄ±¾£¬»òÕß¿ÉÒÔ×ªÎª css ÎÄ±¾µÄÑùÊ½Êı¾İ¶ÔÏó
+ * @param {string|Object|Array} css - è¦æ·»åŠ çš„ css æ–‡æœ¬ï¼Œæˆ–è€…å¯ä»¥è½¬ä¸º css æ–‡æœ¬çš„æ ·å¼æ•°æ®å¯¹è±¡
  * @returns {HTMLStyleElement}
  */
 function addStyle(rules) {
@@ -40,14 +40,14 @@ function addStyle(rules) {
 		)
 	}
 
-	// ½«ĞÂÔöµÄ style ½Úµã²åÈëµÚÒ»¸ö script ±êÇ©Ö®Ç°
+	// å°†æ–°å¢çš„ style èŠ‚ç‚¹æ’å…¥ç¬¬ä¸€ä¸ª script æ ‡ç­¾ä¹‹å‰
 	var ref = document.getElementsByTagName('script')[0]
 	ref.parentNode.insertBefore(ele, ref)
 	return ele;
 }
 
 /*
- * ÑùÊ½Êı¾İ¶ÔÏó×ªÎª css ÎÄ±¾
+ * æ ·å¼æ•°æ®å¯¹è±¡è½¬ä¸º css æ–‡æœ¬
  * @param {Object|Array} rules
  * @returns {string}
  */
@@ -161,7 +161,7 @@ function propertyValuePair(property, value) {
 	return property + ':' + value
 }
 
-// ±©Â¶ css ¹æÔòäÖÈ¾·½·¨
+// æš´éœ² css è§„åˆ™æ¸²æŸ“æ–¹æ³•
 addStyle.renderRules = renderRules
 
 return addStyle
